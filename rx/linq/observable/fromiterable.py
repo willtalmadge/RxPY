@@ -26,9 +26,9 @@ def from_iterable(cls, iterable, scheduler=None):
 
     def subscribe(observer):
         iterator = iter(iterable)
-            if observer.is_stopped:
-                observer.on_completed()
-                return
+        if observer.is_stopped:
+            observer.on_completed()
+            return
         def action(action1, state=None):
             try:
                 item = next(iterator)
