@@ -28,6 +28,9 @@ def from_iterable(cls, iterable, scheduler=None):
         iterator = iter(iterable)
 
         def action(action1, state=None):
+            if observer.is_stopped:
+                observer.on_completed()
+                return
             try:
                 item = next(iterator)
             except StopIteration:
